@@ -1,11 +1,15 @@
-import React from 'react'
+import React from 'react'; // eslint-disable-line no-unused-vars
+import PropTypes from 'prop-types';
+import { Outlet, Navigate } from 'react-router-dom';
 
-const ProtectedRoutes = () => {
+const ProtectedRoutes = ({ isAuth }) => {
   return (
-    <div>
-      ProtectedRoutes
-    </div>
-  )
-}
+    isAuth ? <Outlet /> : <Navigate to={'/login'} />
+  );
+};
 
-export default ProtectedRoutes
+ProtectedRoutes.propTypes = {
+  isAuth: PropTypes.bool.isRequired,
+};
+
+export default ProtectedRoutes;
